@@ -31,7 +31,6 @@ class Address extends Model
 		'lng',
 		'addressable_id',
 		'addressable_type',
-		'is_primary',
 		'is_billing',
 		'is_shipping',
 	];
@@ -89,7 +88,7 @@ class Address extends Model
 			'country_id' => 'required|integer',
 		];
 
-		foreach( config('lecturize.addresses.flags', ['public', 'primary', 'billing', 'shipping']) as $flag ) {
+		foreach( config('lecturize.addresses.flags', ['billing', 'shipping']) as $flag ) {
 			$rules['is_'.$flag] = 'boolean';
 		}
 

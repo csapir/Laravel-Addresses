@@ -17,6 +17,12 @@ We've transferred this package to a new owner and therefor updated the namespace
 Require the package from your `composer.json` file
 
 ```php
+"repositories": [  
+    {  
+        "type": "vcs",  
+        "url": "https://github.com/csapir/Laravel-Addresses"
+    }  
+],      
 "require": {
 	"lecturize/laravel-addresses": "dev-master"
 }
@@ -61,30 +67,19 @@ Check out [Webpatser\Countries](https://github.com/webpatser/laravel-countries) 
 
 ##### Add an Address to a Model
 ```php
-$post = Post::find(1);
-$post->addAddress([
-    'street'     => '123 Example Drive',
-    'city'       => 'Vienna',
-    'post_code'  => '1110',
-    'country'    => 'AT', // ISO-3166-2 or ISO-3166-3 country code
-    'is_primary' => true, // optional flag
-]);
-```
-
-Alternativly you could do...
-
-```php
 $address = [
-    'street'     => '123 Example Drive',
-    'city'       => 'Vienna',
-    'post_code'  => '1110',
-    'country'    => 'AT', // ISO-3166-2 or ISO-3166-3 country code
-    'is_primary' => true, // optional flag
-];
+    'street'     => '390 Elm St.',
+    'city'       => 'Ann Arbor',
+    'state'          => 'Michigan',
+    'post_code'  => '48104',
+    'country_id'    => 840, // US Country Code,
+    'is_billing' => true // optional flag
+]);
+
 $post->addAddress($address);
 ```
 
-Available attributes are `street`, `city`, `post_code`, `state`, `country`, `state`, `note` (for internal use), `is_primary`, `is_billing` & `is_shipping`. Optionally you could also pass `lng` and `lat`, in case you deactivated the included geocoding functionality and want to add them yourself.
+Available attributes are `street`, `city`, `post_code`, `state`, `country_id`, `state`, `note` (for internal use), `is_billing` & `is_shipping`. Optionally you could also pass `lng` and `lat`, in case you deactivated the included geocoding functionality and want to add them yourself.
 
 ##### Check if Model has an Address
 ```php
@@ -98,9 +93,8 @@ if ( $post->hasAddress() ) {
 $addresses = $post->addresses()->get();
 ```
 
-##### Get primary/billing/shipping Addresses
+##### Get Primary billing/shipping Addresses
 ```php
-$address = $post->getPrimaryAddress();
 $address = $post->getBillingAddress();
 $address = $post->getShippingAddress();
 ```

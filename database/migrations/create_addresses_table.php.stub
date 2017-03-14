@@ -12,7 +12,6 @@ class CreateAddressesTable extends Migration
      * Table names
      */
     private $table_addresses;
-    private $table_contacts;
 
     /**
      * Constructor
@@ -20,7 +19,6 @@ class CreateAddressesTable extends Migration
     public function __construct()
     {
         $this->table_addresses = config('lecturize.addresses.table', 'addresses');
-        $this->table_contacts  = config('lecturize.contacts.table', 'contacts');
     }
 
     /**
@@ -55,38 +53,6 @@ class CreateAddressesTable extends Migration
 			$table->timestamps();
 			$table->softDeletes();
 		});
-        /*
-        Schema::create($this->table_contacts, function(Blueprint $table)
-		{
-			$table->increments('id');
-
-            $table->string('type', 20);
-
-            $table->string('first_name',  20)->nullable();
-            $table->string('middle_name', 20)->nullable();
-            $table->string('last_name',   20)->nullable();
-
-            $table->string('company',  20)->nullable();
-            $table->string('position', 20)->nullable();
-
-            $table->string('phone',    16);
-            $table->string('mobile',   16);
-            $table->string('fax',      16);
-            $table->string('email',    60);
-            $table->string('website', 100);
-
-            $table->morphs('contactable');
-
-            foreach( config('lecturize.contacts.flags', ['public', 'primary']) as $flag ) {
-                $table->boolean('is_'. $flag)->default(false)->index();
-            }
-
-            $table->longText('notes');
-
-			$table->timestamps();
-			$table->softDeletes();
-		});
-        */
     }
 
     /**
@@ -96,7 +62,6 @@ class CreateAddressesTable extends Migration
      */
     public function down()
     {
-    //  Schema::drop($this->table_contacts);
         Schema::drop($this->table_addresses);
     }
 }
