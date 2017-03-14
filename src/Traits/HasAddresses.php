@@ -80,15 +80,6 @@ trait HasAddresses
 	}
 
 	/**
-	 * Get primary address
-	 *
-	 * @return Address|null
-	 */
-	public function getPrimaryAddress() {
-		return $this->addresses()->orderBy('is_primary', 'DESC')->first();
-	}
-
-	/**
 	 * Get billing address
 	 *
 	 * @return Address|null
