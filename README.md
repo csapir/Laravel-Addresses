@@ -17,6 +17,12 @@ We've transferred this package to a new owner and therefor updated the namespace
 Require the package from your `composer.json` file
 
 ```php
+"repositories": [  
+    {  
+        "type": "vcs",  
+        "url": "https://github.com/csapir/Laravel-Addresses"
+    }  
+],      
 "require": {
 	"lecturize/laravel-addresses": "dev-master"
 }
