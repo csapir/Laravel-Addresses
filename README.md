@@ -70,19 +70,20 @@ Check out [Webpatser\Countries](https://github.com/webpatser/laravel-countries) 
 $billingAddress = [
     'first_name'    => 'Hen',
     'last_name'     => 'Sapir',
-    'street_1'     => '390 Elm St.',
-    'street_2'     => '', // optional 
-    'city'       => 'Ann Arbor',
-    'state'          => 'Michigan',
-    'post_code'  => '48104',
+    'company'       => '', // optional
+    'street_1'      => '390 Elm St.',
+    'street_2'      => '', // optional 
+    'city'          => 'Ann Arbor',
+    'state'         => 'Michigan',
+    'post_code'     => '48104',
     'country_id'    => 840, // US Country Code,
-    'is_billing' => true
+    'is_billing'    => true
 ]);
 
 $post->addAddress($billingAddress);
 ```
 
-Available attributes are `first_name`, `last_name`, `street_1`, `street_2`, `city`, `post_code`, `state`, `country_id`, `note` (for internal use), `is_billing` & `is_shipping`. Optionally you could also pass `lng` and `lat`, in case you deactivated the included geocoding functionality and want to add them yourself.
+Available attributes are `first_name`, `last_name`, `company`, `street_1`, `street_2`, `city`, `post_code`, `state`, `country_id`, `note` (for internal use), `is_billing` & `is_shipping`. Optionally you could also pass `lng` and `lat`, in case you deactivated the included geocoding functionality and want to add them yourself.
 
 ##### Check if Model has an Address
 ```php

@@ -24,6 +24,7 @@ class Address extends Model
 	protected $fillable = [
 		'first_name',
 		'last_name',
+		'company',
 		'street_1',
 		'street_2',
 		'city',
@@ -86,6 +87,7 @@ class Address extends Model
 		$rules = [
 			'first_name' => 'required|string|min:2|max:60',
 			'last_name' => 'required|string|min:2|max:60',
+			'company' =>	'string|min:2|max:60',
 			'street_1'     => 'required|string|min:3|max:60',
 			'street_2'     => 'string|min:3|max:60',
 			'city'       => 'required|string|min:3|max:60',

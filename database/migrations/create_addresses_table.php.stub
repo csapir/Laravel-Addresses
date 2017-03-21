@@ -34,7 +34,7 @@ class CreateAddressesTable extends Migration
 
             $table->string('first_name',    60);
             $table->string('last_name',    60);
-
+            $table->string('company',    60);
 			$table->string('street_1',    60);
             $table->string('street_2',    60);
 			$table->string('city',      60);
