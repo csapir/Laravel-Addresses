@@ -22,7 +22,10 @@ class Address extends Model
      * @inheritdoc
 	 */
 	protected $fillable = [
-		'street',
+		'first_name',
+		'last_name',
+		'street_1',
+		'street_2',
 		'city',
 		'state',
 		'post_code',
@@ -81,7 +84,10 @@ class Address extends Model
 	 */
 	public static function getValidationRules() {
 		$rules = [
-			'street'     => 'required|string|min:3|max:60',
+			'first_name' => 'required|string|min:2|max:60',
+			'last_name' => 'required|string|min:2|max:60',
+			'street_1'     => 'required|string|min:3|max:60',
+			'street_2'     => 'string|min:3|max:60',
 			'city'       => 'required|string|min:3|max:60',
 			'state'      => 'string|min:3|max:60',
 			'post_code'  => 'required|min:4|max:10|AlphaDash',

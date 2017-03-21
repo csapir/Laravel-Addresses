@@ -32,7 +32,11 @@ class CreateAddressesTable extends Migration
 		{
 			$table->increments('id');
 
-			$table->string('street',    60);
+            $table->string('first_name',    60);
+            $table->string('last_name',    60);
+
+			$table->string('street_1',    60);
+            $table->string('street_2',    60);
 			$table->string('city',      60);
 			$table->string('state',     60);
 			$table->string('post_code', 10);
