@@ -50,7 +50,7 @@ class CreateAddressesTable extends Migration
 
             $table->morphs('addressable');
 
-			foreach( config('lecturize.addresses.flags', ['public', 'primary', 'billing', 'shipping']) as $flag ) {
+			foreach( config('lecturize.addresses.flags', ['billing', 'shipping']) as $flag ) {
 				$table->boolean('is_'. $flag)->default(false)->index();
 			}
 
