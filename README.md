@@ -68,8 +68,7 @@ Check out [Webpatser\Countries](https://github.com/webpatser/laravel-countries) 
 ##### Add an Address to a Model
 ```php
 $billingAddress = [
-    'first_name'    => 'Hen',
-    'last_name'     => 'Sapir',
+    'full_name'    => 'Hen Sapir',
     'company'       => '', // optional
     'street_1'      => '390 Elm St.',
     'street_2'      => '', // optional 
@@ -83,7 +82,7 @@ $billingAddress = [
 $post->addAddress($billingAddress);
 ```
 
-Available attributes are `first_name`, `last_name`, `company`, `street_1`, `street_2`, `city`, `post_code`, `state`, `country_id`, `note` (for internal use), `is_billing` & `is_shipping`. Optionally you could also pass `lng` and `lat`, in case you deactivated the included geocoding functionality and want to add them yourself.
+Available attributes are `full_name`, `company`, `street_1`, `street_2`, `city`, `post_code`, `state`, `country_id`, `note` (for internal use), `is_billing` & `is_shipping`. Optionally you could also pass `lng` and `lat`, in case you deactivated the included geocoding functionality and want to add them yourself.
 
 ##### Check if Model has an Address
 ```php
