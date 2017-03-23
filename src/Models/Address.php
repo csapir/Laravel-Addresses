@@ -110,7 +110,7 @@ class Address extends Model
 	public function geocode() {
 		// build query string
 		$query = [];
-		$query[] = $this->street       ?: '';
+		$query[] = $this->street_1     ?: '';
 		$query[] = $this->city         ?: '';
 		$query[] = $this->state        ?: '';
 		$query[] = $this->post_code    ?: '';
@@ -144,20 +144,16 @@ class Address extends Model
 	 * @return array|null
 	 */
 	public function getArray() {
-		$address = $two = [];
+		$address = [];
 
-		$two[] = $this->post_code ?: '';
-		$two[] = $this->city      ?: '';
-		$two[] = $this->state     ? '('. $this->state .')' : '';
+		$address[] = $this->full_name;
+		$address[] = $this->company ?: '';
+		$address[] = $this->street_1;
+		$address[] = $this->street_2;
+		$address[] = $this->city . ', ' . $this->state . ' ' . $this->post_code;
 
-		$address[] = $this->street ?: '';
-		$address[] = implode( ' ', array_filter($two) );
-		$address[] = $this->getCountry() ?: '';
 
-		if ( count($address = array_filter($address)) > 0 )
-			return $address;
-
-		return null;
+		return $address;
 	}
 
 	/**
