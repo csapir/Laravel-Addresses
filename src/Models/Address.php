@@ -71,7 +71,7 @@ class Address extends Model
 		parent::boot();
 
 		static::saving(function($address) {
-			if ( config('lecturize.addresses.geocode', true) ) {
+			if ( config('lecturize.addresses.geocode', false) ) {
 				$address->geocode();
 			}
 		});
