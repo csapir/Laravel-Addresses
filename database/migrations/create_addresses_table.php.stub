@@ -39,6 +39,7 @@ class CreateAddressesTable extends Migration
 			$table->string('city',      60);
 			$table->string('state',     60);
 			$table->string('post_code', 10);
+            $table->string('phone', 30);
 
 			$table->integer('country_id')->unsigned()->index();
 

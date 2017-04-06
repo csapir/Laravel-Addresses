@@ -36,6 +36,7 @@ class Address extends Model
 		'addressable_type',
 		'is_billing',
 		'is_shipping',
+		'phone'
 	];
 
 	/**
@@ -70,11 +71,11 @@ class Address extends Model
 	public static function boot() {
 		parent::boot();
 
-		static::saving(function($address) {
-			if ( config('lecturize.addresses.geocode', false) ) {
-				$address->geocode();
-			}
-		});
+		// static::saving(function($address) {
+		// 	if ( config('lecturize.addresses.geocode', false) ) {
+		// 		$address->geocode();
+		// 	}
+		// });
 	}
 
 	/**
@@ -92,6 +93,7 @@ class Address extends Model
 			'state'      => 'string|min:3|max:60',
 			'post_code'  => 'required|min:4|max:10|AlphaDash',
 			'country_id' => 'required|integer',
+			'phone'				=> 'string|min:2|max:30'
 		];
 
 		foreach( config('lecturize.addresses.flags', ['billing', 'shipping']) as $flag ) {
@@ -151,6 +153,7 @@ class Address extends Model
 		$address[] = $this->street_1;
 		$address[] = $this->street_2;
 		$address[] = $this->city . ', ' . $this->state . ' ' . $this->post_code;
+		$address[] = $this->phone;		
 
 
 		return $address;
