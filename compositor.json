@@ -1,0 +1,83 @@
+{
+  "name": "csapir/Laravel-Addresses",
+  "version": "0.1.4",
+  "libraries": {
+    "xv": "^1.1.25"
+  },
+  "title": "Laravel Addresses",
+  "branch": "",
+  "style": {
+    "name": "Swiss",
+    "componentSet": {
+      "nav": "nav/BasicNav",
+      "header": "header/SwissHeader",
+      "article": "article/SwissArticle",
+      "footer": "footer/BasicFooter"
+    },
+    "fontFamily": "\"Helvetica Neue\", Helvetica, Arial, sans-serif",
+    "heading": {
+      "fontWeight": 700,
+      "letterSpacing": "-0.01em"
+    },
+    "layout": {
+      "fluid": true
+    },
+    "colors": {
+      "text": "#000",
+      "background": "#fff",
+      "primary": "#05a",
+      "secondary": "#444",
+      "highlight": "#f30",
+      "border": "#ccc",
+      "muted": "#eee"
+    }
+  },
+  "content": [
+    {
+      "component": "nav",
+      "links": [
+        {
+          "href": "https://github.com/csapir/Laravel-Addresses",
+          "text": "GitHub"
+        }
+      ]
+    },
+    {
+      "component": "header",
+      "heading": "Laravel-Addresses",
+      "subhead": "Simple address and contact management for Laravel 5.",
+      "children": [
+        {
+          "component": "ui/TweetButton",
+          "text": "Laravel-Addresses: Simple address and contact management for Laravel 5.",
+          "url": ""
+        },
+        {
+          "component": "ui/GithubButton",
+          "user": "csapir",
+          "repo": "Laravel-Addresses"
+        }
+      ]
+    },
+    {
+      "component": "article",
+      "metadata": {
+        "source": "github.readme"
+      },
+      "html": "<p><a href=\"https://packagist.org/packages/lecturize/laravel-addresses\"><img src=\"https://poser.pugx.org/lecturize/laravel-addresses/v/stable\"></a>\n<a href=\"https://packagist.org/packages/lecturize/laravel-addresses\"><img src=\"https://poser.pugx.org/lecturize/laravel-addresses/downloads\"></a>\n<a href=\"https://packagist.org/packages/lecturize/laravel-addresses\"><img src=\"https://poser.pugx.org/lecturize/laravel-addresses/license\"></a></p>\n\n<p>Simple address and contact management for Laravel 5 with automatical geocoding to add longitude and latitude. Uses the famous <a href=\"https://github.com/webpatser/laravel-countries\">Countries</a> package by Webpatser.</p>\n<h2>Important Notice</h2>\n<p><strong>This package is a work in progress</strong>, please use with care and feel free to report any issues or ideas you may have!</p>\n<p>We&apos;ve transferred this package to a new owner and therefor updated the namespaces to <strong>Lecturize\\Addresses</strong>. The config file is now <code>config/lecturize.php</code>.</p>\n<h2>Installation</h2>\n<p>Require the package from your <code>composer.json</code> file</p>\n<pre><span class=\"hljs-string\">&quot;repositories&quot;</span>: [  \n    {  \n        <span class=\"hljs-string\">&quot;type&quot;</span>: <span class=\"hljs-string\">&quot;vcs&quot;</span>,  \n        <span class=\"hljs-string\">&quot;url&quot;</span>: <span class=\"hljs-string\">&quot;https://github.com/csapir/Laravel-Addresses&quot;</span>\n    }  \n],      \n<span class=\"hljs-string\">&quot;require&quot;</span>: {\n    <span class=\"hljs-string\">&quot;lecturize/laravel-addresses&quot;</span>: <span class=\"hljs-string\">&quot;dev-master&quot;</span>\n}</pre><p>and run <code>$ composer update</code> or both in one with <code>$ composer require lecturize/laravel-addresses</code>.</p>\n<p>Next register the following service providers and facades to your <code>config/app.php</code> file</p>\n<pre><span class=\"hljs-string\">&apos;providers&apos;</span> =&gt; [\n    <span class=\"hljs-comment\">// Illuminate Providers ...</span>\n    <span class=\"hljs-comment\">// App Providers ...</span>\n    Lecturize\\Addresses\\AddressesServiceProvider::class,\n    Webpatser\\Countries\\CountriesServiceProvider::class,\n];</pre><pre><span class=\"hljs-string\">&apos;aliases&apos;</span> =&gt; [\n    <span class=\"hljs-comment\">// Illuminate Facades ...</span>\n    <span class=\"hljs-string\">&apos;Countries&apos;</span> =&gt; Webpatser\\Countries\\CountriesFacade::class,\n];</pre><h2>Configuration &amp; Migration</h2>\n<pre>$ php artisan vendor:publish\n$ php artisan countries:migration</pre><p>This will create a <code>config/lecturize.php</code> and the migration files. In the config file you can customize the table names, finally you&apos;ll have to run migration like so:</p>\n<pre>$ php artisan migrate</pre><p>Check out <a href=\"https://github.com/webpatser/laravel-countries\">Webpatser\\Countries</a> readme to see how to seed their countries data to your database.</p>\n<h2>Usage</h2>\n<h5>Add an Address to a Model</h5>\n<pre>$billingAddress = [\n    <span class=\"hljs-string\">&apos;full_name&apos;</span>    =&gt; <span class=\"hljs-string\">&apos;Hen Sapir&apos;</span>,\n    <span class=\"hljs-string\">&apos;company&apos;</span>       =&gt; <span class=\"hljs-string\">&apos;&apos;</span>, <span class=\"hljs-comment\">// optional</span>\n    <span class=\"hljs-string\">&apos;street_1&apos;</span>      =&gt; <span class=\"hljs-string\">&apos;390 Elm St.&apos;</span>,\n    <span class=\"hljs-string\">&apos;street_2&apos;</span>      =&gt; <span class=\"hljs-string\">&apos;&apos;</span>, <span class=\"hljs-comment\">// optional </span>\n    <span class=\"hljs-string\">&apos;city&apos;</span>          =&gt; <span class=\"hljs-string\">&apos;Ann Arbor&apos;</span>,\n    <span class=\"hljs-string\">&apos;state&apos;</span>         =&gt; <span class=\"hljs-string\">&apos;Michigan&apos;</span>,\n    <span class=\"hljs-string\">&apos;post_code&apos;</span>     =&gt; <span class=\"hljs-string\">&apos;48104&apos;</span>,\n    <span class=\"hljs-string\">&apos;country_id&apos;</span>    =&gt; <span class=\"hljs-number\">840</span>, <span class=\"hljs-comment\">// US Country Code,</span>\n    <span class=\"hljs-string\">&apos;is_billing&apos;</span>    =&gt; <span class=\"hljs-keyword\">true</span>\n]);\n\n$post-&gt;addAddress($billingAddress);</pre><p>Available attributes are <code>full_name</code>, <code>company</code>, <code>street_1</code>, <code>street_2</code>, <code>city</code>, <code>post_code</code>, <code>state</code>, <code>country_id</code>, <code>note</code> (for internal use), <code>is_billing</code> &amp; <code>is_shipping</code>. Optionally you could also pass <code>lng</code> and <code>lat</code>, in case you deactivated the included geocoding functionality and want to add them yourself.</p>\n<h5>Check if Model has an Address</h5>\n<pre><span class=\"hljs-keyword\">if</span> ( $post-&gt;hasAddress() ) {\n    <span class=\"hljs-comment\">// Do something</span>\n}</pre><h5>Get all Addresses for a Model</h5>\n<pre>$addresses = $post-&gt;addresses()-&gt;get();</pre><h5>Get Primary billing/shipping Addresses</h5>\n<pre>$address = $post-&gt;getBillingAddress();\n$address = $post-&gt;getShippingAddress();</pre><h5>Update an Address for a Model</h5>\n<pre>$address = $post-&gt;addresses()-&gt;first(); <span class=\"hljs-comment\">// fetch the address</span>\n\n$post-&gt;updateAddress($address, $new_attributes);</pre><h5>Delete an Address from a Model</h5>\n<pre>$address = $post-&gt;addresses()-&gt;first(); <span class=\"hljs-comment\">// fetch the address</span>\n\n$post-&gt;deleteAddress($address); <span class=\"hljs-comment\">// delete by passing it as argument</span></pre><h5>Delete all Addresses from a Model</h5>\n<pre>$post-&gt;flushAddresses();</pre><h2>License</h2>\n<p>Licensed under <a href=\"http://opensource.org/licenses/MIT\">MIT license</a>.</p>\n<h2>Author</h2>\n<p><strong>Handcrafted with love by <a href=\"http://twitter.com/AMPoellmann\">Alexander Manfred Poellmann</a> for <a href=\"https://lecturize.com\">Lecturize</a> in Vienna &amp; Rome.</strong></p>\n"
+    },
+    {
+      "component": "footer",
+      "links": [
+        {
+          "href": "https://github.com/csapir/Laravel-Addresses",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://github.com/csapir",
+          "text": "csapir"
+        }
+      ]
+    }
+  ]
+}
